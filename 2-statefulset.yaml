@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: minecraft01
+  name: minecraft01
+  namespace: minecraft
+spec:
+  serviceName: minecraft01
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft01
+  template:
+    metadata:
+      labels:
+        app: minecraft01
+    spec:
+      containers:
+      - image: itzg/minecraft-server
+        resources:
+          requests:
+            memory: "4096Mi"
+            cpu: "800m"
+        name: minecraft-server
+        env:
+          - name: "EULA"
+            value: "TRUE"
+          - name: "MOTD"
+            value: "rymdlego server 01"
+          - name: "SERVER_NAME"
+            value: "Rymdlego"
+          - name: "ENABLE_RCON"
+            value: "true"
+          - name: "RCON_PASSWORD"
+            value: "moocows.1348"
+        volumeMounts:
+          - name: datavol
+            mountPath: /data
+      volumes:
+        - name: datavol
+          persistentVolumeClaim:
+            claimName: minecraft-pvc01
