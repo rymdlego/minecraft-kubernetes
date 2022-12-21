@@ -27,13 +27,13 @@ spec:
           - name: "EULA"
             value: "TRUE"
           - name: "MOTD"
-            value: "rymdlego server 01"
+            value: "my minecraft server"
           - name: "SERVER_NAME"
-            value: "Rymdlego"
+            value: "myserver"
           - name: "ENABLE_RCON"
             value: "true"
           - name: "RCON_PASSWORD"
-            value: "moocows.1348"
+            value: "xxxxxxxxxxxx"
         volumeMounts:
           - name: datavol
             mountPath: /data
